@@ -1,37 +1,39 @@
-import React from 'react';
-import {makeStyles} from "@material-ui/core/styles";
-import styles from "./BigButton.styles";
-import ButtonBase from "@material-ui/core/ButtonBase";
-import {Typography} from "@material-ui/core";
+import React from "react";
+import styled from "styled-components";
 
-const useStyles = makeStyles(styles);
-
-const BigButton = (props) => {
-    const classes = useStyles();
-
-    return (
-        <ButtonBase
-            focusRipple
-            className={classes.image}
-            style={{
-                width: "99.8%",
-            }}
-        >
-            <span className={classes.backdrop}/>
-            <span className={classes.button}>
-                <Typography
-                    component="span"
-                    variant="h2"
-                    color="inherit"
-                    className={classes.title}
-                >
-                {props.title}
-                </Typography>
-          </span>
-        </ButtonBase>
-
-
-    );
-}
+const BigButton = ({ title }) => {
+  return (
+    <Wrapper>
+      <StyledBigButton>{title}</StyledBigButton>
+    </Wrapper>
+  );
+};
 
 export default BigButton;
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 10px;
+`;
+
+const StyledBigButton = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 500px;
+  max-width: 90%;
+  height: 500px;
+
+  background-color: #d1d0d0;
+  border-radius: 4px;
+  box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.5);
+
+  :hover {
+    border: 3px solid #d1d0d0;
+  }
+`;

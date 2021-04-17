@@ -1,33 +1,76 @@
-import React from "react"
-import Grid from "@material-ui/core/Grid";
-import Button from "@material-ui/core/Button";
+import React, { useEffect, useState } from "react";
 import BarcodeScannerComponent from "react-webcam-barcode-scanner";
+import {
+  StyledWrapper,
+  StyledCard,
+  StyledCardHeader,
+  StyledInput,
+  StyledButton,
+  StyledInputComponent,
+} from "../styledComponents";
+
+const TAB = {
+  text: "text",
+  cam: "cam",
+};
 
 const BarcodeUploader = (props) => {
-    React.useEffect(() => {
+  const [selected, setSelected] = useState(TAB.text);
+  const [data, setData] = useState("Scan barcode");
 
-    })
-    const [data, setData] = React.useState('Not Found');
-    return (
-        <Grid container direction={"column"}>
-            <Grid item container>
-                <BarcodeScannerComponent
-                    width={500}
-                    height={500}
-                    onUpdate={(err, result) => {
-                        if (result) setData(result.text)
-                        else setData('Not Found')
-                    }}
-                />
-                <p>{data}</p>
-            </Grid>
-            <Grid item container alignItems={"center"} justify={"center"}>
-                <Button variant={"contained"} onClick={() => {
-                    props.backButton(1)
-                }}>Powrót</Button>
-            </Grid>
-        </Grid>
-    );
-}
+  useEffect(() => {
+    setData("Scan barcode");
+  }, [selected]);
+  const renderCamInput = () => (
+    <StyledInputComponent>
+      <BarcodeScannerComponent
+        width={400}
+        onUpdate={(err, result) => {
+          if (result && result.text !== "Not Found") {
+            setData(result.text);
+          }
+        }}
+      />
+      <p>{data}</p>
+    </StyledInputComponent>
+  );
+
+  const renderManualInput = () => (
+    <StyledInputComponent>
+      <StyledInput type="text" placeholder="Barcode" />
+      <StyledButton>Submit</StyledButton>
+    </StyledInputComponent>
+  );
+
+  return (
+    <StyledWrapper>
+      <StyledCard>
+        <StyledCardHeader onClick={() => setSelected(TAB.text)}>
+          Enter the barcode manually
+          {selected === TAB.text && (
+            <div className="content">{renderManualInput()}</div>
+          )}
+        </StyledCardHeader>
+        <StyledCardHeader
+          className="top-line"
+          onClick={() => setSelected(TAB.cam)}
+        >
+          Scan barcode
+          {selected === TAB.cam && (
+            <div className="content">{renderCamInput()}</div>
+          )}
+        </StyledCardHeader>
+      </StyledCard>
+      <StyledButton
+        background="#C6C6C6"
+        onClick={() => {
+          props.backButton(1);
+        }}
+      >
+        Back
+      </StyledButton>
+    </StyledWrapper>
+  );
+};
 
 export default BarcodeUploader;
