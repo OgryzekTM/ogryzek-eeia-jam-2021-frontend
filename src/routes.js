@@ -1,4 +1,5 @@
 import QualificationScreen from "./screens/QualificationScreen/QualificationScreen";
+import MapView from './components/MapView';
 
 const routes = [
   {
@@ -6,6 +7,10 @@ const routes = [
     component: QualificationScreen,
     exact: true,
   },
+  {
+    path : '/map-test',
+    component: MapView
+ }
 ];
 
 export default routes;
