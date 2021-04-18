@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import noImage from "../../assets/pictures/noimage.png";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 import {
   StyledWrapper,
   StyledCard,
@@ -12,13 +14,34 @@ import {
 
 export const PhotoDetector = ({ backButton }) => {
   const [image, setImage] = useState(null);
-
+  const history = useHistory();
   const handleChange = (event) => {
     if (event.target.files.length > 0) {
       const file = URL.createObjectURL(event.target.files[0]);
       setImage(file);
     }
   };
+
+  const requestPhotoDetals = () => {
+    console.log(image);
+    const formData = new FormData();
+    formData.append('file', image);
+  
+    // const res = axios.post('//localhost:5001/upload', formData, {
+    //   headers: {
+    //     'Content-Type': 'multipart/form-data'
+    //   }
+    // })
+    // .then((response) => {console.log(response.data);});
+    var data = {
+      product: "Piwo",
+      waste_category: {
+        name: "Metale i tworzywa sztuczne",
+        id: 4
+      } 
+    }
+    history.push("/results", data);
+  }
 
   return (
     <>
@@ -34,7 +57,7 @@ export const PhotoDetector = ({ backButton }) => {
               </StyledEmptyImage>
             )}
             <StyledInput type="file" onChange={handleChange} />
-            <StyledButton>Wyślij</StyledButton>
+            <StyledButton onClick={requestPhotoDetals} >Wyślij</StyledButton>
           </StyledInputComponent>
         </StyledCard>
         <StyledButton

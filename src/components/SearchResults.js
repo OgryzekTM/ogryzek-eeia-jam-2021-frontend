@@ -3,8 +3,6 @@ import MapView from "../components/MapView";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardMedia from "@material-ui/core/CardMedia";
-import { StyledCard, StyledWrapper } from "./styledComponents";
-import { Button } from "@material-ui/core";
 
 const SearchResult = ({ location: { state } }) => {
   const [category, setCategory] = React.useState(state.waste_category.name);
