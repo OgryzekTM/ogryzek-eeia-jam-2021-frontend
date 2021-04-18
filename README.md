@@ -4,6 +4,13 @@
 
 A first place winning application created for an [EEIA JAM 2021](http://dzienweeia.samorzad.p.lodz.pl/eeia-jam.html) hackathon organized by the Faculty of Electrical, Electronic, Computer and Control Engineering on Łódź University on Technology.
 
+## Insight
+
+![Title screen](img/img1.png)<br>
+![Identification](img/img3.png)<br>
+![Image Detection](img/img2.png)<br>
+
+
 ## Credits
 
 [Michał Musiał](https://github.com/michalmusial147) - Head React Developer<br>
