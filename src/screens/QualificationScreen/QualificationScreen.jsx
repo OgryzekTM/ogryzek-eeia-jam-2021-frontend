@@ -3,6 +3,10 @@ import BigButton from "../../components/common/BigButton/BigButton";
 import Grid from "@material-ui/core/Grid";
 import BarcodeUploader from "../../components/BarcodeUploader/BarcodeUploader";
 import { PhotoDetector } from "../../components/PhotoDetector/index";
+import { ManualSearch } from "../../components/ManualSearch/index";
+import barcodeImg from "../../assets/pictures/barcode.png";
+import camImg from "../../assets/pictures/cam.png";
+import pencilImg from "../../assets/pictures/pencil.png";
 import styled from "styled-components";
 import SimpleDetector from "../../components/SimpleDetector";
 
@@ -28,7 +32,10 @@ const QualificationScreen = () => {
               lg={4}
               xl={4}
             >
-              <BigButton title={"Kod kreskowy"} />
+              <BigButton>
+                <img src={barcodeImg} alt="barcode" />
+                <p>Barcode</p>
+              </BigButton>
             </Grid>
             <Grid
               onClick={() => {
@@ -40,7 +47,10 @@ const QualificationScreen = () => {
               lg={4}
               xl={4}
             >
-              <BigButton title={"Zrób zdjęcie"} />
+              <BigButton>
+                <img src={camImg} alt="cam" />
+                <p>Photo</p>
+              </BigButton>
             </Grid>
             <Grid
               onClick={() => {
@@ -52,7 +62,10 @@ const QualificationScreen = () => {
               lg={4}
               xl={4}
             >
-              <BigButton title={"Wpisz ręcznie"} />
+              <BigButton>
+                <img src={pencilImg} alt="pencil" />
+                <p>Manual Search</p>
+              </BigButton>
             </Grid>
           </Grid>
         </Grid>
@@ -61,9 +74,7 @@ const QualificationScreen = () => {
       ) : stage === 3 ? (
         <PhotoDetector backButton={setStage} />
       ) : stage === 4 ? (
-        <SimpleDetector>
-
-        </SimpleDetector>
+        <ManualSearch backButton={setStage} />
       ) : null}
     </React.Fragment>
   );
@@ -76,7 +87,7 @@ const StyledTitle = styled.div`
   align-items: center;
   justify-content: center;
 
-  font-size: 24px;
+  font-size: 32px;
   font-weight: 600;
   padding: 30px;
 `;
