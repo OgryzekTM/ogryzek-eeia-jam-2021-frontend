@@ -1,6 +1,6 @@
 import QualificationScreen from "./screens/QualificationScreen/QualificationScreen";
 import MapView from './components/MapView';
-import LandingPage from './components/LandingPage';
+import LandingPage from './screens/LandingPage';
 import SearchResult from './components/SearchResults';
 const routes = [
   {

@@ -77,7 +77,7 @@ const BarcodeUploader = (props) => {
     <StyledWrapper>
       <StyledCard>
         <StyledCardHeader onClick={() => setSelected(TAB.text)}>
-          Enter the barcode manually
+          Wprowadź kod z opakowania ręcznie
           {selected === TAB.text && (
             <div className="content">{renderManualInput()}</div>
           )}
@@ -86,7 +86,7 @@ const BarcodeUploader = (props) => {
           className="top-line"
           onClick={() => setSelected(TAB.cam)}
         >
-          Scan barcode
+          Skanuj kod kreskowy
           {selected === TAB.cam && (
             <div className="content">{renderCamInput()}</div>
           )}
@@ -98,7 +98,7 @@ const BarcodeUploader = (props) => {
           props.backButton(1);
         }}
       >
-        Back
+        Wróć
       </StyledButton>
     </StyledWrapper>
   );

@@ -24,7 +24,7 @@ export const PhotoDetector = ({ backButton }) => {
     <>
       <StyledWrapper>
         <StyledCard>
-          <StyledCardHeader>Photo Detector</StyledCardHeader>
+          <StyledCardHeader>Rozpoznawanie obrazów</StyledCardHeader>
           <StyledInputComponent>
             {image ? (
               <StyledImage src={image} alt="user img" />
@@ -34,7 +34,7 @@ export const PhotoDetector = ({ backButton }) => {
               </StyledEmptyImage>
             )}
             <StyledInput type="file" onChange={handleChange} />
-            <StyledButton>Submit</StyledButton>
+            <StyledButton>Wyślij</StyledButton>
           </StyledInputComponent>
         </StyledCard>
         <StyledButton
@@ -43,7 +43,7 @@ export const PhotoDetector = ({ backButton }) => {
             backButton(1);
           }}
         >
-          Back
+          Wróć
         </StyledButton>
       </StyledWrapper>
     </>

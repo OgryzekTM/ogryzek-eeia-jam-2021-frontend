@@ -26,10 +26,10 @@ export const ManualSearch = ({ backButton }) => {
   return (
     <StyledWrapper>
       <StyledCard>
-        <StyledCardHeader>Name Search</StyledCardHeader>
+        <StyledCardHeader>Wyszukaj nazwę</StyledCardHeader>
         <StyledInputComponent>
           <StyledInput
-            placeholder="Search"
+            placeholder="Wyszukaj"
             onChange={(e) => handleFilter(e.target.value)}
           />
         </StyledInputComponent>

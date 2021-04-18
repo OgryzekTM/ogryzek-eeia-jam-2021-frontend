@@ -18,7 +18,7 @@ const QualificationScreen = () => {
         <Grid container direction={"column"}>
           <Grid container item xs={12} justify={"center"} alignItems={"center"}>
             <StyledTitle>
-              How would you like to identify your rubbish?
+              Jak chciałbyś zidentfikować swoje odpady?
             </StyledTitle>
           </Grid>
           <Grid container direction="row" item>
@@ -34,7 +34,7 @@ const QualificationScreen = () => {
             >
               <BigButton>
                 <img src={barcodeImg} alt="barcode" />
-                <p>Barcode</p>
+                <p>Kod kreskowy</p>
               </BigButton>
             </Grid>
             <Grid
@@ -49,7 +49,7 @@ const QualificationScreen = () => {
             >
               <BigButton>
                 <img src={camImg} alt="cam" />
-                <p>Photo</p>
+                <p>Zdjęcie</p>
               </BigButton>
             </Grid>
             <Grid
@@ -64,7 +64,7 @@ const QualificationScreen = () => {
             >
               <BigButton>
                 <img src={pencilImg} alt="pencil" />
-                <p>Manual Search</p>
+                <p>Zwykłe wyszukiwanie</p>
               </BigButton>
             </Grid>
           </Grid>
