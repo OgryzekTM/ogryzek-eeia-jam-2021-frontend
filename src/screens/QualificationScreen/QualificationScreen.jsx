@@ -8,6 +8,7 @@ import barcodeImg from "../../assets/pictures/barcode.png";
 import camImg from "../../assets/pictures/cam.png";
 import pencilImg from "../../assets/pictures/pencil.png";
 import styled from "styled-components";
+import SimpleDetector from "../../components/SimpleDetector";
 
 const QualificationScreen = () => {
   const [stage, setStage] = React.useState(1);
