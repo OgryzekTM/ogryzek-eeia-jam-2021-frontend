@@ -60,7 +60,6 @@ function Copyright() {
    },
  }));
  
- const cards = [1, 2, 3];
 
 const LandingPage = () => {
    const classes = useStyles();
@@ -74,19 +73,17 @@ const LandingPage = () => {
          <div className={classes.heroContent}>
            <Container maxWidth="sm">
              <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-               Recyfly
+               Rectify
              </Typography>
              <Typography variant="h5" align="center" color="textSecondary" paragraph>
-               "Sortowanie śmieci może być proste!" - to motto naszej firmy.
-               Pomagamy znalezc odpoweidnie miejsce dla Twoich odpadow.
+               "Sortowanie śmieci to takie proste!" - to motto naszej firmy.
+               Pomagamy znaleźć odpoweidnie miejsce dla Twoich odpadow.
              </Typography>
              <div className={classes.heroButtons}>
                <Grid container spacing={2} justify="center">
                  <Grid item>
                    <Button variant="contained" color="primary" onClick={()=>{history.push("/qualify")}}>
-                    
                      Przejdź do aplikacji
-                   
                    </Button>
                  </Grid>
                </Grid>
@@ -108,7 +105,7 @@ const LandingPage = () => {
                        Skanowanie kodów kreskowych
                      </Typography>
                      <Typography>
-                       Mozesz zeskanowac kod kreskowy opakowania z którym nie wiesz co zrobić
+                       Możesz zeskanowac kod kreskowy opakowania z którym nie wiesz co zrobić. Kod zostanie automatycznie sprawdzony w naszym systemie.
                      </Typography>
                    </CardContent>
                  </Card>
@@ -125,7 +122,7 @@ const LandingPage = () => {
                        Sztuczna inteligencja
                      </Typography>
                      <Typography>
-                       Nasza aplikacja korzysta ze sztuczej inteligencji zeby pomoc ci znalezc kosz na smieci.
+                       Nasza aplikacja korzysta ze sztuczej inteligencji zeby pomoc ci znalezc miejsce dla twoich odpadów. Nie musisz się niczym przejmować.
                      </Typography>
                    </CardContent>
                  </Card>
