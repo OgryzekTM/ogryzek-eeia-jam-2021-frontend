@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import axios from 'axios';
+import apiKeys from '../../apiKeys';
+import { useHistory } from "react-router-dom";
 import {
   StyledWrapper,
   StyledCard,
@@ -10,19 +13,23 @@ import {
 } from "../styledComponents";
 
 export const ManualSearch = ({ backButton }) => {
-  const [data] = useState([
-    { name: "test" },
-    { name: "test 2" },
-    { name: "test 3" },
-    { name: "test 4" },
-  ]);
-
-  const [filtered, setFiltered] = useState(data);
-
-  const handleFilter = (searchTerm) => {
-    setFiltered(data.filter((item) => item.name.includes(searchTerm)));
-  };
-
+  const [filtered, setFiltered] = useState({});
+  const history = useHistory();
+  const handleSearch = () => {
+    axios.get(`${apiKeys.backendURL}waste_category/barcode/?name=${filtered}`)
+      .then(function (response) {
+        // handle success
+        console.log(response); 
+        history.push("/results", response.data);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+      .then(function () {
+        // always executed
+      });
+  }
   return (
     <StyledWrapper>
       <StyledCard>
@@ -30,17 +37,21 @@ export const ManualSearch = ({ backButton }) => {
         <StyledInputComponent>
           <StyledInput
             placeholder="Wyszukaj"
-            onChange={(e) => handleFilter(e.target.value)}
+            onChange={(e) => setFiltered(e.target.value)}
           />
         </StyledInputComponent>
         <StyledList>
-          {filtered.map((item, index) => (
-            <div className="item-list" key={index}>
-              {item.name}
-            </div>
-          ))}
+        
         </StyledList>
       </StyledCard>
+      <StyledButton
+        onClick={() => {
+          console.log(filtered);
+          handleSearch();
+        }}
+      >
+        Search
+      </StyledButton>
       <StyledButton
         background="#C6C6C6"
         onClick={() => {

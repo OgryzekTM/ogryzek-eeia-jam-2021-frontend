@@ -8,7 +8,6 @@ import barcodeImg from "../../assets/pictures/barcode.png";
 import camImg from "../../assets/pictures/cam.png";
 import pencilImg from "../../assets/pictures/pencil.png";
 import styled from "styled-components";
-import SimpleDetector from "../../components/SimpleDetector";
 
 const QualificationScreen = () => {
   const [stage, setStage] = React.useState(1);
@@ -86,7 +85,6 @@ const StyledTitle = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
   font-size: 32px;
   font-weight: 600;
   padding: 30px;
