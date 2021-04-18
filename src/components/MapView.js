@@ -3,15 +3,17 @@ import { Chip } from "@material-ui/core";
 import GoogleMap from "./GoogleMap";
 import axios from "axios";
 import styled from "styled-components";
+import { StyledButton } from "./styledComponents";
 import apiKeys from "../apiKeys";
-import { StyledCard } from "./styledComponents";
-
+import { useHistory } from "react-router-dom";
+import { Button } from "@material-ui/core";
 
 const MapView = ({ categoryId }) => {
   const [chips, setChips] = useState([]);
   const [positions, setPositions] = useState([]);
   const [category, setCategory] = useState(categoryId);
   const [categories, setCategories] = useState([]);
+  const history = useHistory();
 
   useEffect(() => {
     axios
@@ -74,7 +76,6 @@ const MapView = ({ categoryId }) => {
     setCategory(event.target.value);
   };
 
-
   return (
     <div id="view">
       <StyledWrapper>
@@ -85,6 +86,17 @@ const MapView = ({ categoryId }) => {
             </option>
           ))}
         </StyledSelect>
+        <StyledButton
+          background="#C6C6C6"
+          onClick={() => {
+            history.push("/qualify");
+          }}
+        >
+          Wróć
+        </StyledButton>
+      </StyledWrapper>
+      <StyledWrapper>
+        <Button color="primary">Możesz to wyrzucić tutaj:</Button>
       </StyledWrapper>
       <div>
         {chips.length > 0 ? (
@@ -100,11 +112,11 @@ const MapView = ({ categoryId }) => {
           </div>
         ) : null}
       </div>
-    
+
       <GoogleMap
         id="map"
         options={{
-          center: { lat: 51.7100, lng: 19.4667 },
+          center: { lat: 51.71, lng: 19.4667 },
           zoom: 12,
         }}
         onMapLoad={(map) => {
@@ -145,7 +157,7 @@ const StyledSelect = styled.select`
 
 const StyledWrapper = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
 `;

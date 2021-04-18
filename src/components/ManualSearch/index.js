@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import axios from 'axios';
-import apiKeys from '../../apiKeys';
+import axios from "axios";
+import apiKeys from "../../apiKeys";
 import { useHistory } from "react-router-dom";
 import {
   StyledWrapper,
@@ -16,11 +16,12 @@ export const ManualSearch = ({ backButton }) => {
   const [filtered, setFiltered] = useState({});
   const history = useHistory();
   const handleSearch = () => {
-    axios.get(`${apiKeys.backendURL}waste_category/barcode/?name=${filtered}`)
+    axios
+      .get(`${apiKeys.backendURL}waste_category/barcode/?name=${filtered}`)
       .then(function (response) {
         // handle success
-        console.log(response); 
-        const newres = {...response.data, product: filtered};
+        console.log(response);
+        const newres = { ...response.data, product: filtered };
         history.push("/results", newres);
       })
       .catch(function (error) {
@@ -30,7 +31,7 @@ export const ManualSearch = ({ backButton }) => {
       .then(function () {
         // always executed
       });
-  }
+  };
   return (
     <StyledWrapper>
       <StyledCard>
@@ -41,18 +42,18 @@ export const ManualSearch = ({ backButton }) => {
             onChange={(e) => setFiltered(e.target.value)}
           />
         </StyledInputComponent>
-        <StyledList>
-        
-        </StyledList>
+        <StyledButtonWrapper>
+          <StyledButton
+            onClick={() => {
+              console.log(filtered);
+              handleSearch();
+            }}
+          >
+            Search
+          </StyledButton>
+        </StyledButtonWrapper>
       </StyledCard>
-      <StyledButton
-        onClick={() => {
-          console.log(filtered);
-          handleSearch();
-        }}
-      >
-        Search
-      </StyledButton>
+
       <StyledButton
         background="#C6C6C6"
         onClick={() => {
@@ -65,20 +66,9 @@ export const ManualSearch = ({ backButton }) => {
   );
 };
 
-const StyledList = styled.div`
+const StyledButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px 0;
-
-  .item-list {
-    width: 90%;
-    border-bottom: 1px solid #dcdcdc;
-
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 10px;
-  }
 `;
