@@ -4,6 +4,8 @@ import GoogleMap from "./GoogleMap";
 import axios from "axios";
 import styled from "styled-components";
 import apiKeys from "../apiKeys";
+import { StyledCard } from "./styledComponents";
+
 
 const MapView = ({ categoryId }) => {
   const [chips, setChips] = useState([]);
@@ -72,6 +74,7 @@ const MapView = ({ categoryId }) => {
     setCategory(event.target.value);
   };
 
+
   return (
     <div id="view">
       <StyledWrapper>
@@ -97,6 +100,7 @@ const MapView = ({ categoryId }) => {
           </div>
         ) : null}
       </div>
+    
       <GoogleMap
         id="map"
         options={{

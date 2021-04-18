@@ -20,7 +20,8 @@ export const ManualSearch = ({ backButton }) => {
       .then(function (response) {
         // handle success
         console.log(response); 
-        history.push("/results", response.data);
+        const newres = {...response.data, product: filtered};
+        history.push("/results", newres);
       })
       .catch(function (error) {
         // handle error
