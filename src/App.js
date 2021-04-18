@@ -2,7 +2,7 @@ import React from 'react';
 import {Redirect, Route, Switch, BrowserRouter as Router,} from 'react-router-dom';
 import routes from './routes';
 import AppBar from "./components/AppBar/AppBar";
-
+import Link from '@material-ui/core/Link';
 
 function App() {
     return (
@@ -20,7 +20,9 @@ function App() {
                     </Route>
                 </Switch>
             </Router>
+            
         </div>
+        
     );
 }
 

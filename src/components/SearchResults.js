@@ -4,6 +4,7 @@ import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import { StyledCard, StyledWrapper } from "./styledComponents";
+import { Button } from "@material-ui/core";
 
 const SearchResult = ({ location: { state } }) => {
   const [category, setCategory] = React.useState(state.waste_category.name)
@@ -92,13 +93,9 @@ const SearchResult = ({ location: { state } }) => {
     <>
       {state && (
         <div>
-          {/* <StyledWrapper>
-            <h2>Your product is {state.product}</h2>
-            <h3>Recycling category is {state.waste_category.name}</h3>
-          </StyledWrapper> */}
           {spitCategoryDescription()}
           <div>
-          <StyledWrapper> <StyledCard><h3>Możesz to wyrzucić tutaj</h3></StyledCard></StyledWrapper>
+          <StyledWrapper> <StyledCard><Button color='primary'>Możesz to wyrzucić tutaj</Button></StyledCard></StyledWrapper>
             <MapView categoryId={state.waste_category.id} />
           </div>
         </div>

@@ -104,7 +104,7 @@ const MapView = ({ categoryId }) => {
       <GoogleMap
         id="map"
         options={{
-          center: { lat: 51.7433, lng: 19.4667 },
+          center: { lat: 51.7100, lng: 19.4667 },
           zoom: 12,
         }}
         onMapLoad={(map) => {
