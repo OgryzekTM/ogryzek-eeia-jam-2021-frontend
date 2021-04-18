@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
-const BigButton = ({ title }) => {
+const BigButton = ({ children }) => {
   return (
     <Wrapper>
-      <StyledBigButton>{title}</StyledBigButton>
+      <StyledBigButton>{children}</StyledBigButton>
     </Wrapper>
   );
 };
@@ -34,6 +34,19 @@ const StyledBigButton = styled.div`
   box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.5);
 
   :hover {
-    border: 3px solid #d1d0d0;
+    border: 3px solid #dcdcdc;
+    background-color: #dcdcdc;
+
+    img {
+      width: 310px;
+    }
+  }
+
+  p {
+    font-size: 28px;
+  }
+
+  img {
+    width: 300px;
   }
 `;
