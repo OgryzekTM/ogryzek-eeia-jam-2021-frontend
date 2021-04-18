@@ -10,10 +10,12 @@ import {
   StyledInputComponent,
 } from "../styledComponents";
 import apiKeys from '../../apiKeys';
+import { useHistory } from "react-router-dom";
 const TAB = {
   text: "text",
   cam: "cam",
 };
+
 
 const BarcodeUploader = (props) => {
   const [selected, setSelected] = useState(TAB.text);
@@ -39,12 +41,12 @@ const BarcodeUploader = (props) => {
     console.log(e.target.value);
     setManualCode(e.target.value);
   };
-
+  const  history = useHistory();
   const makeRequest = (barcode) => {
     axios.get(`${apiKeys.backendURL}waste_category/barcode/?code=${barcode}`)
     .then(function (response) {
-   
       console.log(response);
+      history.push("/results", response.data);
     })
     .catch(function (error) {
       // handle error
