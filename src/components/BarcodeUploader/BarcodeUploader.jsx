@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import BarcodeScannerComponent from "react-webcam-barcode-scanner";
 import {
   StyledWrapper,
@@ -8,7 +9,7 @@ import {
   StyledButton,
   StyledInputComponent,
 } from "../styledComponents";
-
+import apiKeys from '../../apiKeys';
 const TAB = {
   text: "text",
   cam: "cam",
@@ -17,7 +18,7 @@ const TAB = {
 const BarcodeUploader = (props) => {
   const [selected, setSelected] = useState(TAB.text);
   const [data, setData] = useState("Scan barcode");
-
+  const [manualCode, setManualCode] = useState("");
   useEffect(() => {
     setData("Scan barcode");
   }, [selected]);
@@ -34,11 +35,34 @@ const BarcodeUploader = (props) => {
       <p>{data}</p>
     </StyledInputComponent>
   );
+  const handleManualInputChange = (e) => {
+    console.log(e.target.value);
+    setManualCode(e.target.value);
+  };
+
+  const makeRequest = (barcode) => {
+    axios.get(`${apiKeys.backendURL}waste_category/barcode/?code=${barcode}`)
+    .then(function (response) {
+   
+      console.log(response);
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+    })
+    .then(function () {
+      // always executed
+    });
+  }
+
+  const handleSubmit = () => {
+    makeRequest(manualCode);
+  }
 
   const renderManualInput = () => (
     <StyledInputComponent>
-      <StyledInput type="text" placeholder="Barcode" />
-      <StyledButton>Submit</StyledButton>
+      <StyledInput onChange={handleManualInputChange}  type="text" placeholder="Barcode" />
+      <StyledButton onClick={handleSubmit}>Submit</StyledButton>
     </StyledInputComponent>
   );
 

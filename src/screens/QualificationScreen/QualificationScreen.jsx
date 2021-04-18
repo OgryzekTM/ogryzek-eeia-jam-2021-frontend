@@ -4,6 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import BarcodeUploader from "../../components/BarcodeUploader/BarcodeUploader";
 import { PhotoDetector } from "../../components/PhotoDetector/index";
 import styled from "styled-components";
+import SimpleDetector from "../../components/SimpleDetector";
 
 const QualificationScreen = () => {
   const [stage, setStage] = React.useState(1);
@@ -60,7 +61,9 @@ const QualificationScreen = () => {
       ) : stage === 3 ? (
         <PhotoDetector backButton={setStage} />
       ) : stage === 4 ? (
-        <h1>Detekcja ręczna</h1>
+        <SimpleDetector>
+
+        </SimpleDetector>
       ) : null}
     </React.Fragment>
   );
