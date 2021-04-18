@@ -16,10 +16,6 @@ class GoogleMap extends Component {
     this.props.onMapLoad(map);
   }
 
-  componentDidUpdate() {
-    this.onScriptLoad();
-  }
-
   componentDidMount() {
     if (!window.google) {
       var s = document.createElement("script");
@@ -32,6 +28,12 @@ class GoogleMap extends Component {
         this.onScriptLoad();
       });
     } else {
+      this.onScriptLoad();
+    }
+  }
+
+  componentDidUpdate() {
+    if (window.google) {
       this.onScriptLoad();
     }
   }
