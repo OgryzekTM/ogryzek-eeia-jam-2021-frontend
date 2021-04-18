@@ -4,22 +4,16 @@ import { Button, Box, Chip } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { makeStyles } from '@material-ui/core/styles';
 import GoogleMap from './GoogleMap'
-
-
-var categories = [
-   {
-      title: 'Electronics'
-   },
-   {
-      title: 'Nuclear'
-   },
-   {
-      title: 'Car parts'
-   },
-   {
-      title: 'Aluminium'
-   }
-]
+import axios from 'axios';
+import {
+   StyledWrapper,
+   StyledCard,
+   StyledCardHeader,
+   StyledInput,
+   StyledButton,
+   StyledInputComponent,
+ } from "../components/styledComponents";
+import apiKeys from '../apiKeys'
 
 const positions = [
    {
@@ -57,7 +51,23 @@ const MapView = () => {
    const classes = useStyles();
    const [chips, setChips] = React.useState([]);
    const [category, setCategory] = React.useState(null);
-  
+   const [categories, setCategories] = React.useState([]);
+
+   React.useEffect(()=>{
+      axios.get(`${apiKeys.backendURL}waste_category/`)
+      .then(function (response) {
+      console.log(response.data.waste_categories);
+      setCategories(response.data.waste_categories);
+      })
+      .catch(function (error) {
+      // handle error
+      console.log(error);
+      })
+      .then(function () {
+      // always executed
+      });
+   }, []);
+
    const generateChips = () => {
       return chips.map((category) => {
          return <Chip key={category} style={{ margin: '5px' }}
@@ -85,10 +95,9 @@ const MapView = () => {
 
       }
    };
-   const handleTextFieldChange = (value) => {
-      setCategory(value);
+   const handleTextFieldChange = (event, values) => {
+      setCategory(values.name);
    };
-
 
    return (
       <div id='view'>
@@ -97,13 +106,14 @@ const MapView = () => {
                <Autocomplete
                   id="combo-box-demo"
                   options={categories}
-                  getOptionLabel={(option) => option.title}
+                  getOptionLabel={(option) => option.name}
                   style={{ width: 300 }}
-                  onInputChange={handleTextFieldChange}
+                  onChange={handleTextFieldChange}
                   renderInput={(params) =>
                      <TextField {...params}
                         label="Choose category"
                         variant="outlined"
+                        
                      />}
                />
                <Button variant="contained" color="secondary" style={{ height: '40px' }} onClick={handleAdd}>
@@ -111,12 +121,13 @@ const MapView = () => {
                </Button>
             </Box>
          </form>
+         <div>
          {
             chips.length > 0 ?
                (<div style={{ height: '40px', padding: '10px', display: 'flex', overflow: 'scroll' }}>
                   { generateChips()}
                </div>) : null
-         }
+         }</div>
          <GoogleMap
             id="map"
             options={{
@@ -125,7 +136,6 @@ const MapView = () => {
             }}
           
             onMapLoad={map => {
-                 
                   positions.forEach((el)=>{
                      var infowindow = new window.google.maps.InfoWindow({
                      content: "<h3>Recycling place:</h3> <h2>" + el.text + "</h2>"
